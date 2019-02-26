@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>C#</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>bprop</Shortcut>
+      <_Description>Bindable Property</_Description>
+      <TemplateType>Unknown</TemplateType>
+    </Header>
+    <Variables>
+      <Variable name="Name">
+        <Default>Text</Default>
+      </Variable>
+      <Variable name="type">
+        <Default>string</Default>
+      </Variable>
+      <Variable name="classname" isEditable="false">
+        <Function>GetCurrentClassName()</Function>
+      </Variable>
+    </Variables>
+    <Code><![CDATA[        public static readonly BindableProperty $Name$Property = BindableProperty.Create(nameof($Name$), typeof($type$), typeof($classname$), default($type$), propertyChanged: On$Name$Changed);
+        public $type$ $Name$
+        {
+            get => ($type$)GetValue($Name$Property);
+            set => SetValue($Name$Property, value);
+        }
+
+        static void On$Name$Changed(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = ($classname$)bindable;
+            var value = ($type$)newValue;$end$
+        }]]></Code>
+  </CodeTemplate>
+</CodeTemplates>
